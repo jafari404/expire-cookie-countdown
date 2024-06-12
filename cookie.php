@@ -27,10 +27,13 @@ $remaining_time = $cookie_expire - time();
               document.getElementById('timer').innerHTML =  'Session Expired';
               Swal.fire({
                 icon: "error",
-                title: 'Session Expired. Login again.',
+                title: 'Session Expired. Login again.<?php
+                  unset($_COOKIE['user_login']);
+                  session_unset();
+                  session_destroy(); ?>',
               }).then(function() {
               // Redirect the user
-                window.location.href = "index.php";
+                window.location.href = "<?php echo $logout ?>";
               });
           }
       }
